@@ -192,7 +192,7 @@ if ($response->is_success) {
   $webcontent=$response->content;
 
   my $Uptime = 0;
-	if($webcontent =~ m/Uptime: (.*?)\n/) {
+	if ( $webcontent =~ m/Uptime: (\d*?)\n/) {
 	 $Uptime = $1;
   }
     
