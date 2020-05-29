@@ -1,35 +1,36 @@
 #!/usr/bin/perl -w
 ####################### check_apachestatus_auto.pl #######################
-# Version : 1.2
-# Date : 14 Jul 2009 
+# Version : 1.3
+# Date : 29 May 2020
 # Author  : Dennis D. Spreen (dennis at spreendigital.de)
 #						Based on check_apachestatus.pl v1.4 by 
-#						  De Bodt Lieven (Lieven dot DeBodt at gmail.com)
-#						    Updated by
-#   						  Karsten Behrens (karsten at behrens dot in)
-#		    				  Geoff McQueen (geoff dot mcqueen at hiivesystems dot com )
-#				    		  Dave Steinberg (dave at redterror dot net)
+#							De Bodt Lieven (Lieven dot DeBodt at gmail.com)
 #						Updated by
-#							Gerhard Lausser (gerhard dot lausser at consol dot de)									
+#							Karsten Behrens (karsten at behrens dot in)
+#							Geoff McQueen (geoff dot mcqueen at hiivesystems dot com )
+#							Dave Steinberg (dave at redterror dot net)
+#							Gerhard Lausser (gerhard dot lausser at consol dot de)
+#							Andre Hotzler (githubpublic at nspw dot andrehotzler dot de)
 # Licence : GPL - http://www.fsf.org/licenses/gpl.txt
 #############################################################
 #
 # help : ./check_apachestatus_auto.pl -h
 #
-# V1.0 Inital Release
-# V1.1 Works with lighttpd server-status as well, added accesses perfdata
-# V1.2 Updated perf data to be PNP compliant, added proxy option (Gerhard Lausser)
-
+# v1.3 Fixed non numeric uptime (Andre Hotzler)
+# v1.2 Updated perf data to be PNP compliant, added proxy option (Gerhard Lausser)
+# v1.1 Works with lighttpd server-status as well, added accesses perfdata
+# v1.0 Inital Release
 use strict;
 use Getopt::Long;
 use LWP::UserAgent;
 use Time::HiRes qw(gettimeofday tv_interval);
 use Digest::MD5 qw(md5 md5_hex);
 
-
 # Nagios specific
 
 use lib "/usr/local/nagios/libexec";
+#use lib "/usr/lib/nagios/plugins/";
+
 use utils qw(%ERRORS $TIMEOUT);
 #my %ERRORS=('OK'=>0,'WARNING'=>1,'CRITICAL'=>2,'UNKNOWN'=>3,'DEPENDENT'=>4);
 
@@ -39,21 +40,21 @@ use utils qw(%ERRORS $TIMEOUT);
 my $Version='1.2';
 my $Name=$0;
 
-my $o_host =		undef; 		# hostname 
-my $o_help=		undef; 		# want some help ?
-my $o_port = 		undef; 		# port
-my $o_url =		'';		# url to use, if not the default
-my $o_user =		undef;		# user for auth
+my $o_host =		undef;	# hostname 
+my $o_help=			undef;	# want some help ?
+my $o_port = 		undef;	# port
+my $o_url =			'';		# url to use, if not the default
+my $o_user =		undef;	# user for auth
 my $o_pass =		'';		# password for auth
 my $o_realm =		'';		# password for auth
-my $o_version= 		undef;  	# print version
-my $o_warn_level=	undef;  	# Number of available slots that will cause a warning
-my $o_crit_level=	undef;  	# Number of available slots that will cause an error
-my $o_timeout=  	15;            	# Default 15s Timeout
-my $o_proxy=            undef;          # proxy-url for both http and https
+my $o_version= 		undef;	# print version
+my $o_warn_level=	undef;	# Number of available slots that will cause a warning
+my $o_crit_level=	undef;	# Number of available slots that will cause an error
+my $o_timeout=  	15;		# Default 15s Timeout
+my $o_proxy=		undef;	# proxy-url for both http and https
 
-my $TempPath = '/tmp/'; # temp path
-my $MaxUptimeDif = 60*30;  # Maximum uptime difference (seconds), default 30 minutes
+my $TempPath = 		'/tmp/';# temp path
+my $MaxUptimeDif = 	60*30;	# Maximum uptime difference (seconds), default 30 minutes
 
 # functions
 
@@ -192,7 +193,7 @@ if ($response->is_success) {
   $webcontent=$response->content;
 
   my $Uptime = 0;
-	if ( $webcontent =~ m/Uptime: (\d*?)\n/) {
+	if ($webcontent =~ m/Uptime: (\d*?)\n/) {
 	 $Uptime = $1;
   }
     
