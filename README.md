@@ -8,8 +8,8 @@ This is an enhanced version of an enhanced version of Lieven De Bodt’s check_a
 Detailed info at https://blog.spreendigital.de/nagios/?#check_apachestatus_auto
 
 
-v1.3	2020-05-29	Fixed non numeric uptime (Andre Hotzler)
-v1.2	2009-07-04	Updated perf data to be PNP compliant, added proxy option (Gerhard Lausser)
-v1.1	2009-03-06	Works with lighttpd server-status as well, added accesses perfdata
-v1.0	2009-03-01	Inital Release
+v1.3	2020-05-29	Fixed non numeric uptime (Andre Hotzler)<br>
+v1.2	2009-07-04	Updated perf data to be PNP compliant, added proxy option (Gerhard Lausser)<br>
+v1.1	2009-03-06	Works with lighttpd server-status as well, added accesses perfdata<br>
+v1.0	2009-03-01	Inital Release<br>
 
