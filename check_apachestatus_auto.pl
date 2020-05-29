@@ -1,25 +1,26 @@
 #!/usr/bin/perl -w
 ####################### check_apachestatus_auto.pl #######################
-# Version : 1.3
-# Date : 29 May 2020
-# Author  : Dennis D. Spreen (dennis at spreendigital.de)
-#						Based on check_apachestatus.pl v1.4 by 
-#							De Bodt Lieven (Lieven dot DeBodt at gmail.com)
-#						Updated by
-#							Karsten Behrens (karsten at behrens dot in)
-#							Geoff McQueen (geoff dot mcqueen at hiivesystems dot com )
-#							Dave Steinberg (dave at redterror dot net)
-#							Gerhard Lausser (gerhard dot lausser at consol dot de)
-#							Andre Hotzler (githubpublic at nspw dot andrehotzler dot de)
-# Licence : GPL - http://www.fsf.org/licenses/gpl.txt
+# Version:	1.3
+# Date:		29 May 2020
+# Author:	Dennis D. Spreen (dennis at spreendigital.de)
+#			https://blog.spreendigital.de/nagios/?#check_apachestatus_auto
+#				Based on check_apachestatus.pl v1.4 by 
+#					De Bodt Lieven (Lieven dot DeBodt at gmail.com)
+#				Updated by
+#					Karsten Behrens (karsten at behrens dot in)
+#					Geoff McQueen (geoff dot mcqueen at hiivesystems dot com )
+#					Dave Steinberg (dave at redterror dot net)
+#					Gerhard Lausser (gerhard dot lausser at consol dot de)
+#					Andre Hotzler (githubpublic at nspw dot andrehotzler dot de)
+# Licence:	GPL - http://www.fsf.org/licenses/gpl.txt
 #############################################################
 #
 # help : ./check_apachestatus_auto.pl -h
 #
-# v1.3 Fixed non numeric uptime (Andre Hotzler)
-# v1.2 Updated perf data to be PNP compliant, added proxy option (Gerhard Lausser)
-# v1.1 Works with lighttpd server-status as well, added accesses perfdata
-# v1.0 Inital Release
+# v1.3	2020-05-29	Fixed non numeric uptime (Andre Hotzler)
+# v1.2	2009-07-04	Updated perf data to be PNP compliant, added proxy option (Gerhard Lausser)
+# v1.1	2009-03-06	Works with lighttpd server-status as well, added accesses perfdata
+# v1.0	2009-03-01	Inital Release
 use strict;
 use Getopt::Long;
 use LWP::UserAgent;
