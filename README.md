@@ -5,4 +5,4 @@ The perfdata returns the status of all slots including Requests/sec, Bytes/Reque
 
 This is an enhanced version of an enhanced version of Lieven De Bodt’s check_apachestatus.pl.
 
-Detailed info at http://blog.spreendigital.de/nagios/?#check_apachestatus_auto
+Detailed info at https://blog.spreendigital.de/nagios/?#check_apachestatus_auto
